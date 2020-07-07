@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Entities.Entity;
+using Microsoft.EntityFrameworkCore;
 
 namespace Infrastructure.Configuration
 {
@@ -8,6 +9,8 @@ namespace Infrastructure.Configuration
         {
             _ = Database.EnsureCreated();
         }
+
+        public DbSet<Product> Product { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -20,7 +23,7 @@ namespace Infrastructure.Configuration
 
         private string GetConnectionString()
         {
-            return "Data Source=DESKTOP-A87BRQ8\\SQLEXPRESS;Initial Catalog=BancoSemus;Integrated Security=True";
+            return "Data Source=DESKTOP-Q0QSRSM\\SQLEXPRESS;Initial Catalog=DDD_Semus;Integrated Security=True;User ID=sa;Password=123";
         }
     }
 }
