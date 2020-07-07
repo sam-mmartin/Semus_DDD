@@ -7,6 +7,7 @@ using Infrastructure.Repository.Generics;
 using Infrastructure.Repository.Repositories;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -25,11 +26,18 @@ namespace Web_DDD_Semus
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            _ = services.AddDbContext<ContextBase>();
             _ = services.AddSingleton(typeof(IGeneric<>), typeof(RepositoryGeneric<>));
+
             _ = services.AddSingleton<IProduct, RepositoryProduct>();
-            _ = services.AddSingleton<InterfaceProductApp, AppProduct>();
+            _ = services.AddSingleton<IStock, RepositoryStock>();
+            _ = services.AddSingleton<IStockProducts, RepositoryStockProducts>();
+
+            _ = services.AddSingleton<IProductApp, AppProduct>();
+            _ = services.AddSingleton<IStockApp, AppStock>();
+            _ = services.AddSingleton<IStockProductsApp, AppStockProducts>();
+
             _ = services.AddControllersWithViews();
+            _ = services.AddDbContext<ContextBase>(option => option.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

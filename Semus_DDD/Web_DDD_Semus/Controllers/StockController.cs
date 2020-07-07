@@ -5,18 +5,18 @@ using ApplicationApp.Interfaces;
 
 namespace Web_DDD_Semus.Controllers
 {
-    public class ProductsController : Controller
+    public class StockController : Controller
     {
-        private readonly IProductApp _interfaceProductApp;
+        private readonly IStockApp _stockApp;
 
-        public ProductsController(IProductApp interfaceProductApp)
+        public StockController(IStockApp stockApp)
         {
-            _interfaceProductApp = interfaceProductApp;
+            _stockApp = stockApp;
         }
 
         public async Task<IActionResult> Index()
         {
-            return View(await _interfaceProductApp.List());
+            return View(await _stockApp.List());
         }
 
         public async Task<IActionResult> Details(int? id)
@@ -26,13 +26,13 @@ namespace Web_DDD_Semus.Controllers
                 return NotFound();
             }
 
-            var product = await _interfaceProductApp.GetEntityById((int)id);
-            if (product == null)
+            var stock = await _stockApp.GetEntityById((int)id);
+            if (stock == null)
             {
                 return NotFound();
             }
 
-            return View(product);
+            return View(stock);
         }
 
         public IActionResult Create()
@@ -42,14 +42,14 @@ namespace Web_DDD_Semus.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Type,Category,ID,Description")] Product product)
+        public async Task<IActionResult> Create([Bind("DateRegister,DateUpdate,ID,Description")] Stock stock)
         {
             if (ModelState.IsValid)
             {
-                await _interfaceProductApp.Add(product);
+                await _stockApp.Add(stock);
                 return RedirectToAction(nameof(Index));
             }
-            return View(product);
+            return View(stock);
         }
 
         public async Task<IActionResult> Edit(int? id)
@@ -59,19 +59,19 @@ namespace Web_DDD_Semus.Controllers
                 return NotFound();
             }
 
-            var product = await _interfaceProductApp.GetEntityById((int)id);
-            if (product == null)
+            var stock = await _stockApp.GetEntityById((int)id);
+            if (stock == null)
             {
                 return NotFound();
             }
-            return View(product);
+            return View(stock);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Type,Category,ID,Description")] Product product)
+        public async Task<IActionResult> Edit(int id, [Bind("DateRegister,DateUpdate,ID,Description")] Stock stock)
         {
-            if (id != product.ID)
+            if (id != stock.ID)
             {
                 return NotFound();
             }
@@ -80,7 +80,7 @@ namespace Web_DDD_Semus.Controllers
             {
                 try
                 {
-                    await _interfaceProductApp.Update(product);
+                    await _stockApp.Update(stock);
                 }
                 catch
                 {
@@ -88,7 +88,7 @@ namespace Web_DDD_Semus.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(product);
+            return View(stock);
         }
 
         public async Task<IActionResult> Delete(int? id)
@@ -98,21 +98,21 @@ namespace Web_DDD_Semus.Controllers
                 return NotFound();
             }
 
-            var product = await _interfaceProductApp.GetEntityById((int)id);
-            if (product == null)
+            var stock = await _stockApp.GetEntityById((int)id);
+            if (stock == null)
             {
                 return NotFound();
             }
 
-            return View(product);
+            return View(stock);
         }
 
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var product = await _interfaceProductApp.GetEntityById((int)id);
-            await _interfaceProductApp.Delete(product);
+            var stock = await _stockApp.GetEntityById((int)id);
+            await _stockApp.Delete(stock);
             return RedirectToAction(nameof(Index));
         }
     }

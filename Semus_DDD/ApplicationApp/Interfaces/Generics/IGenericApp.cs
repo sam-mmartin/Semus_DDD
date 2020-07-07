@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 
 namespace ApplicationApp.Interfaces.Generics
 {
-    public interface InterfaceGenericApp<T> where T : class
+    public interface IGenericApp<T> where T : class
     {
         Task Add(T Object);
         Task Update(T Object);

@@ -6,15 +6,16 @@ using System.Threading.Tasks;
 
 namespace ApplicationApp.OpenApp
 {
-    public class AppProduct : InterfaceProductApp
+    public class AppProduct : IProductApp
     {
-        IProduct _IProduct;
+        private readonly IProduct _IProduct;
 
         public AppProduct(IProduct IProduct)
         {
             _IProduct = IProduct;
         }
 
+        #region Methods
         public async Task Add(Product Object)
         {
             await _IProduct.Add(Object);
@@ -39,5 +40,6 @@ namespace ApplicationApp.OpenApp
         {
             await _IProduct.Update(Object);
         }
+        #endregion
     }
 }
