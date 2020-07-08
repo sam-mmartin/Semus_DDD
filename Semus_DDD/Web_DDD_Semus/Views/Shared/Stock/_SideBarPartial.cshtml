@@ -1,0 +1,163 @@
+﻿<!-- SideBar -->
+<nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
+    <div class="sidebar-sticky pt-3">
+        <ul class="nav flex-column">
+            <!-- Dashboard -->
+            <li class="nav-item">
+                <a class="nav-link active" href="~/EstoqueSemus/Index">
+                    <span data-feather="home"></span>
+                    Dashboard <span class="sr-only">(current)</span>
+                </a>
+            </li>
+
+            <!-- Medicamentos -->
+            <li class="nav-item">
+                <a class="nav-link" id="Medicamentos" href="~/Produto/Details?tipoProduto=1">
+                    <span data-feather="database"></span>
+                    Medicamentos
+                </a>
+            </li>
+
+            <!-- Suprimentos -->
+            <li class="nav-item">
+                <a class="nav-link" id="Suprimentos" href="~/Produto/Details?tipoProduto=2">
+                    <span data-feather="database"></span>
+                    Suprimentos
+                </a>
+            </li>
+
+            @if (ViewBag.Estoque != null)
+            {
+                <!-- Pedidos -->
+                <li class="nav-item">
+                    <a class="nav-link" data-toggle="collapse" href="#collapsePedidos" role="button" aria-expanded="false" aria-controls="collapsePedidos">
+                        <span data-feather="clipboard"></span>
+                        Pedidos
+                    </a>
+                    <div class="collapse" id="collapsePedidos">
+                        <div class="card bg-dark">
+                            <a href="#" class="nav-link text-light" id="pedidos1">
+                                <span data-feather="droplet"></span>
+                                Medicamento
+                            </a>
+                            <a href="#" class="nav-link text-light" id="pedidos2">
+                                <span data-feather="thermometer"></span>
+                                Suprimento
+                            </a>
+                        </div>
+                    </div>
+                </li>
+
+                if (ViewBag.Estoque != 1)
+                {
+                    <!-- Novo Pedido -->
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="collapse" href="#collapseNovoPedido" role="button" aria-expanded="false" aria-controls="collapseNovoPedido">
+                            <span data-feather="shopping-bag"></span>
+                            Novo Pedido
+                        </a>
+                        <div class="collapse" id="collapseNovoPedido">
+                            <div class="card bg-dark">
+                                <a href="#" class="nav-link text-light" id="novoPedido1">
+                                    <span data-feather="droplet"></span>
+                                    Medicamento
+                                </a>
+                                <a href="#" class="nav-link text-light" id="novoPedido2">
+                                    <span data-feather="thermometer"></span>
+                                    Suprimento
+                                </a>
+                            </div>
+                        </div>
+                    </li>
+                }
+
+                if (ViewBag.Estoque == 1)
+                {
+                    <!-- Compras -->
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="collapse" href="#collapseCompras" role="button" aria-expanded="false" aria-controls="collapseCompras">
+                            <span data-feather="credit-card"></span>
+                            Compras
+                        </a>
+                        <div class="collapse" id="collapseCompras">
+                            <div class="card bg-dark">
+                                <a href="#" class="nav-link text-light" id="compras1">
+                                    <span data-feather="droplet"></span>
+                                    Medicamento
+                                </a>
+                                <a href="#" class="nav-link text-light" id="compras2">
+                                    <span data-feather="thermometer"></span>
+                                    Suprimento
+                                </a>
+                            </div>
+                        </div>
+                    </li>
+
+                    <!-- Nova Compra -->
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="collapse" href="#collapseNovaCompra" role="button" aria-expanded="false" aria-controls="collapseNovaCompra">
+                            <span data-feather="shopping-cart"></span>
+                            Nova Compra
+                        </a>
+                        <div class="collapse" id="collapseNovaCompra">
+                            <div class="card bg-dark">
+                                <a href="#" class="nav-link text-light" id="novaCompras1">
+                                    <span data-feather="droplet"></span>
+                                    Medicamento
+                                </a>
+                                <a href="#" class="nav-link text-light" id="novaCompras2">
+                                    <span data-feather="thermometer"></span>
+                                    Suprimento
+                                </a>
+                            </div>
+                        </div>
+                    </li>
+                }
+            }
+
+            <!-- Relatórios -->
+            <li class="nav-item">
+                <a class="nav-link" href="#">
+                    <span data-feather="bar-chart-2"></span>
+                    Relatórios
+                </a>
+            </li>
+        </ul>
+
+        <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
+            <span>...</span>
+            <a class="d-flex align-items-center text-muted" href="#" aria-label="Add a new report">
+                <span data-feather="plus-circle"></span>
+            </a>
+        </h6>
+
+        <!--
+        <ul class="nav flex-column mb-2">
+            <li class="nav-item">
+                <a class="nav-link" href="#">
+                    <span data-feather="file-text"></span>
+                    Current month
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">
+                    <span data-feather="file-text"></span>
+                    Last quarter
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">
+                    <span data-feather="file-text"></span>
+                    Social engagement
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">
+                    <span data-feather="file-text"></span>
+                    Year-end sale
+                </a>
+            </li>
+        </ul>
+            -->
+    </div>
+</nav>

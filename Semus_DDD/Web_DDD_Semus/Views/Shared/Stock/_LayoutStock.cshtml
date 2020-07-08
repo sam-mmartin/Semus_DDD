@@ -1,0 +1,53 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>@ViewData["Title"] - SEMUS</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/Custom/Estoques.css" />
+    <link rel="stylesheet" href="~/lib/FontAwesome/css/all.css" />
+</head>
+<body>
+    <partial name="_NavBarPartial.cshtml" />
+
+    <div class="container-fluid">
+        <div class="row">
+            <partial name="_SideBarPartial.cshtml" />
+
+            @RenderBody()
+        </div>
+    </div>
+
+    <partial name="_ModalFaturarPedidoPartial.cshtml" />
+    <partial name="_ModalComprasPartial.cshtml" />
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="~/Script/jquery-3.5.1.slim.js"><\/script>')</script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/CustomJS/feather.min.js"></script>
+    <script src="~/js/CustomJS/Chart.min.js"></script>
+    <script src="~/js/SemusScripts/dashboard.js"></script>
+
+    @if (ViewBag.Estoque != null)
+    {
+        <script src="~/Scripts/SemusScripts/ModificaNavbarEstoque.js"></script>
+    }
+
+    @RenderSection("scripts", required: false)
+
+    @if (TempData["Message"] != null)
+    {
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/5.4.0/bootbox.min.js"></script>
+        <script>
+            bootbox.alert({
+                size: "small",
+                title: "Detalhes",
+                message: '@TempData["Message"]',
+                callback: function () { /* your callback code */ }
+            });
+        </script>
+    }
+</body>
+</html>
