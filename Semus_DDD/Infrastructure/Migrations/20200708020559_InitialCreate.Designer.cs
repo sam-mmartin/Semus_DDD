@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Infrastructure.Migrations
 {
     [DbContext(typeof(ContextBase))]
-    [Migration("20200707205247_UpdateConfigurationsContext")]
-    partial class UpdateConfigurationsContext
+    [Migration("20200708020559_InitialCreate")]
+    partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -80,7 +80,7 @@ namespace Infrastructure.Migrations
                     b.Property<DateTime>("DateInput")
                         .HasColumnType("datetime2");
 
-                    b.Property<DateTime?>("DateOutput")
+                    b.Property<DateTime>("DateOutput")
                         .HasColumnType("datetime2");
 
                     b.Property<int>("Quant_Input")

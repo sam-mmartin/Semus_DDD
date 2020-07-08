@@ -2,6 +2,8 @@ using ApplicationApp.Interfaces;
 using ApplicationApp.OpenApp;
 using Domain.Interfaces.Generics;
 using Domain.Interfaces.InterfaceEntities;
+using Domain.Interfaces.InterfaceServices;
+using Domain.Services;
 using Infrastructure.Configuration;
 using Infrastructure.Repository.Generics;
 using Infrastructure.Repository.Repositories;
@@ -35,6 +37,8 @@ namespace Web_DDD_Semus
             _ = services.AddSingleton<IProductApp, AppProduct>();
             _ = services.AddSingleton<IStockApp, AppStock>();
             _ = services.AddSingleton<IStockProductsApp, AppStockProducts>();
+
+            _ = services.AddSingleton<IServiceStock, ServiceStock>();
 
             _ = services.AddControllersWithViews();
             _ = services.AddDbContext<ContextBase>(option => option.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));

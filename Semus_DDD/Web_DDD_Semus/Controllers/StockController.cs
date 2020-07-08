@@ -2,17 +2,20 @@
 using Microsoft.AspNetCore.Mvc;
 using Entities.Entity;
 using ApplicationApp.Interfaces;
+using Web_DDD_Semus.ViewModels;
 
 namespace Web_DDD_Semus.Controllers
 {
     public class StockController : Controller
     {
+        #region Var & Constructor
         private readonly IStockApp _stockApp;
 
         public StockController(IStockApp stockApp)
         {
             _stockApp = stockApp;
         }
+        #endregion
 
         public async Task<IActionResult> Index()
         {
@@ -42,14 +45,18 @@ namespace Web_DDD_Semus.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("DateRegister,DateUpdate,ID,Description")] Stock stock)
+        public async Task<IActionResult> Create(StockViewModel model)
         {
             if (ModelState.IsValid)
             {
-                await _stockApp.Add(stock);
+                var newStock = new Stock
+                {
+                    Description = model.Description
+                };
+                await _stockApp.AddStock(newStock);
                 return RedirectToAction(nameof(Index));
             }
-            return View(stock);
+            return View(model);
         }
 
         public async Task<IActionResult> Edit(int? id)
@@ -69,18 +76,13 @@ namespace Web_DDD_Semus.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("DateRegister,DateUpdate,ID,Description")] Stock stock)
+        public async Task<IActionResult> Edit([Bind("Description")] Stock stock)
         {
-            if (id != stock.ID)
-            {
-                return NotFound();
-            }
-
             if (ModelState.IsValid)
             {
                 try
                 {
-                    await _stockApp.Update(stock);
+                    await _stockApp.UpdateStock(stock);
                 }
                 catch
                 {

@@ -21,5 +21,11 @@ namespace Domain.Services
             stock.DateUpdate = DateTime.Now;
             await _IStock.Add(stock);
         }
+
+        public async Task UpdateStock(Stock stock)
+        {
+            stock.DateUpdate = DateTime.Now;
+            await _IStock.Update(stock);
+        }
     }
 }

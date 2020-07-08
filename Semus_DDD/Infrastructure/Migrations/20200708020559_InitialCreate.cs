@@ -3,41 +3,10 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Infrastructure.Migrations
 {
-    public partial class UpdateConfigurationsContext : Migration
+    public partial class InitialCreate : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropPrimaryKey(
-                name: "PK_Product",
-                table: "Product");
-
-            migrationBuilder.RenameTable(
-                name: "Product",
-                newName: "Produto");
-
-            migrationBuilder.AlterColumn<string>(
-                name: "Description",
-                table: "Produto",
-                maxLength: 100,
-                nullable: false,
-                oldClrType: typeof(string),
-                oldType: "nvarchar(max)",
-                oldNullable: true);
-
-            migrationBuilder.AlterColumn<string>(
-                name: "Category",
-                table: "Produto",
-                maxLength: 50,
-                nullable: false,
-                oldClrType: typeof(string),
-                oldType: "nvarchar(max)",
-                oldNullable: true);
-
-            migrationBuilder.AddPrimaryKey(
-                name: "PK_Produto",
-                table: "Produto",
-                column: "ID");
-
             migrationBuilder.CreateTable(
                 name: "Estoque",
                 columns: table => new
@@ -54,6 +23,21 @@ namespace Infrastructure.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Produto",
+                columns: table => new
+                {
+                    ID = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Description = table.Column<string>(maxLength: 100, nullable: false),
+                    Type = table.Column<byte>(nullable: false),
+                    Category = table.Column<string>(maxLength: 50, nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Produto", x => x.ID);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "EstoqueProdutos",
                 columns: table => new
                 {
@@ -64,7 +48,7 @@ namespace Infrastructure.Migrations
                     Quant_Output = table.Column<int>(nullable: false),
                     Quant_Shortage = table.Column<int>(nullable: false),
                     DateInput = table.Column<DateTime>(nullable: false),
-                    DateOutput = table.Column<DateTime>(nullable: true)
+                    DateOutput = table.Column<DateTime>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -95,36 +79,10 @@ namespace Infrastructure.Migrations
                 name: "EstoqueProdutos");
 
             migrationBuilder.DropTable(
+                name: "Produto");
+
+            migrationBuilder.DropTable(
                 name: "Estoque");
-
-            migrationBuilder.DropPrimaryKey(
-                name: "PK_Produto",
-                table: "Produto");
-
-            migrationBuilder.RenameTable(
-                name: "Produto",
-                newName: "Product");
-
-            migrationBuilder.AlterColumn<string>(
-                name: "Description",
-                table: "Product",
-                type: "nvarchar(max)",
-                nullable: true,
-                oldClrType: typeof(string),
-                oldMaxLength: 100);
-
-            migrationBuilder.AlterColumn<string>(
-                name: "Category",
-                table: "Product",
-                type: "nvarchar(max)",
-                nullable: true,
-                oldClrType: typeof(string),
-                oldMaxLength: 50);
-
-            migrationBuilder.AddPrimaryKey(
-                name: "PK_Product",
-                table: "Product",
-                column: "ID");
         }
     }
 }

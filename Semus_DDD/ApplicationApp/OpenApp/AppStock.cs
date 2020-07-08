@@ -24,11 +24,6 @@ namespace ApplicationApp.OpenApp
             await _IStock.Add(Object);
         }
 
-        public async Task AddStock(Stock stock)
-        {
-            await _IServiceStock.AddStock(stock);
-        }
-
         public async Task Delete(Stock Object)
         {
             await _IStock.Delete(Object);
@@ -47,6 +42,18 @@ namespace ApplicationApp.OpenApp
         public async Task Update(Stock Object)
         {
             await _IStock.Update(Object);
+        }
+        #endregion
+
+        #region Custom Methods
+        public async Task AddStock(Stock stock)
+        {
+            await _IServiceStock.AddStock(stock);
+        }
+
+        public async Task UpdateStock(Stock stock)
+        {
+            await _IServiceStock.UpdateStock(stock);
         }
         #endregion
     }

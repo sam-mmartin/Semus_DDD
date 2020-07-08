@@ -6,5 +6,6 @@ namespace Domain.Interfaces.InterfaceServices
     public interface IServiceStock
     {
         Task AddStock(Stock stock);
+        Task UpdateStock(Stock stock);
     }
 }

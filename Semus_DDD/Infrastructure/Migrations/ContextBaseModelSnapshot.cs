@@ -54,7 +54,7 @@ namespace Infrastructure.Migrations
                     b.Property<DateTime>("DateRegister")
                         .HasColumnType("datetime2");
 
-                    b.Property<DateTime?>("DateUpdate")
+                    b.Property<DateTime>("DateUpdate")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Description")
@@ -78,7 +78,7 @@ namespace Infrastructure.Migrations
                     b.Property<DateTime>("DateInput")
                         .HasColumnType("datetime2");
 
-                    b.Property<DateTime?>("DateOutput")
+                    b.Property<DateTime>("DateOutput")
                         .HasColumnType("datetime2");
 
                     b.Property<int>("Quant_Input")
@@ -103,7 +103,7 @@ namespace Infrastructure.Migrations
             modelBuilder.Entity("Entities.Entity.StockProducts", b =>
                 {
                     b.HasOne("Entities.Entity.Product", "Product")
-                        .WithMany("StockProducts")
+                        .WithMany()
                         .HasForeignKey("ProductID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
