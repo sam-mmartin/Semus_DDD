@@ -7,15 +7,18 @@ namespace Web_DDD_Semus.Controllers
 {
     public class ProductsController : Controller
     {
+        #region Var & Constructor
         private readonly IProductApp _interfaceProductApp;
 
         public ProductsController(IProductApp interfaceProductApp)
         {
             _interfaceProductApp = interfaceProductApp;
         }
+        #endregion
 
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(int stockID, byte type)
         {
+            //var productList =  
             return View(await _interfaceProductApp.List());
         }
 
