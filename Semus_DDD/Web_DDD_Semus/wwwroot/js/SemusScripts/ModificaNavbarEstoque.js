@@ -7,7 +7,7 @@
 
     $('#Suprimentos').click(function () {
         var estoqueID = $('#EstoqueID').html().split('-');
-        var href = "/Produto/Index?stockID=" + estoqueID[0] + "&type=2";
+        var href = "/Products/Index?stockID=" + estoqueID[0] + "&type=2";
         $('#Suprimentos').attr('href', href);
     });
 

@@ -34,8 +34,10 @@ namespace Infrastructure.Configuration
 
         private string GetConnectionString()
         {
-            //return "Data Source=DESKTOP-A87BRQ8\\SQLEXPRESS;Initial Catalog=DDD_Semus;Integrated Security=True;User ID=sa;Password=123";
-            return "Data Source=DESKTOP-Q0QSRSM\\SQLEXPRESS;Initial Catalog=DDD_Semus;Integrated Security=True;User ID=sa;Password=123";
+            // Laptop
+            return "Data Source=DESKTOP-A87BRQ8\\SQLEXPRESS;Initial Catalog=DDD_Semus;Integrated Security=True;User ID=sa;Password=123";
+            // Desktop
+            //return "Data Source=DESKTOP-Q0QSRSM\\SQLEXPRESS;Initial Catalog=DDD_Semus;Integrated Security=True;User ID=sa;Password=123";
         }
     }
 }

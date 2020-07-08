@@ -14,8 +14,8 @@
                 <a class="btn btn-sm btn-outline-warning" asp-action="Edit" asp-route-id="@Model.ID">Editar</a>
                 @if (Model.ID == 1)
                 {
-                    <a class="btn btn-sm btn-outline-secondary" asp-controller="Products" asp-action="Create" asp-route-TipoProduto="1">Cadastrar Medicamento</a>
-                    <a class="btn btn-sm btn-outline-secondary" asp-controller="Products" asp-action="Create" asp-route-TipoProduto="2">Cadastrar Suprimento</a>
+                    <a class="btn btn-sm btn-outline-secondary" asp-controller="Products" asp-action="Create" asp-route-type="1">Cadastrar Medicamento</a>
+                    <a class="btn btn-sm btn-outline-secondary" asp-controller="Products" asp-action="Create" asp-route-type="2">Cadastrar Suprimento</a>
                 }
             </div>
             <button type="button" class="btn btn-sm btn-outline-secondary dropdown-toggle">

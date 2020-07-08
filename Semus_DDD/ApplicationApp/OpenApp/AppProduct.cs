@@ -10,9 +10,9 @@ namespace ApplicationApp.OpenApp
     {
         private readonly IProduct _IProduct;
 
-        public AppProduct(IProduct IProduct)
+        public AppProduct(IProduct product)
         {
-            _IProduct = IProduct;
+            _IProduct = product;
         }
 
         #region Methods

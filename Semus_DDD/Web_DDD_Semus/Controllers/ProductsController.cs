@@ -2,121 +2,146 @@
 using Microsoft.AspNetCore.Mvc;
 using Entities.Entity;
 using ApplicationApp.Interfaces;
+using System.Linq;
+using Web_DDD_Semus.ViewModels;
 
 namespace Web_DDD_Semus.Controllers
 {
     public class ProductsController : Controller
     {
         #region Var & Constructor
-        private readonly IProductApp _interfaceProductApp;
+        private readonly IProductApp _iProductApp;
+        private readonly IStockApp _iStockApp;
+        private readonly IStockProductsApp _iStockProductApp;
 
-        public ProductsController(IProductApp interfaceProductApp)
+        public ProductsController(IProductApp iProductApp, IStockApp iStockApp, IStockProductsApp iStockProductApp)
         {
-            _interfaceProductApp = interfaceProductApp;
+            _iProductApp = iProductApp;
+            _iStockApp = iStockApp;
+            _iStockProductApp = iStockProductApp;
         }
         #endregion
 
         public async Task<IActionResult> Index(int stockID, byte type)
         {
-            //var productList =  
-            return View(await _interfaceProductApp.List());
+            var productList = await _iStockProductApp.ListByStock(stockID, type);
+            return View(productList);
         }
 
-        public async Task<IActionResult> Details(int? id)
+        //public async Task<IActionResult> Details(int? id)
+        //{
+        //    if (id == null)
+        //    {
+        //        return NotFound();
+        //    }
+
+        //    var product = await _interfaceProductApp.GetEntityById((int)id);
+        //    if (product == null)
+        //    {
+        //        return NotFound();
+        //    }
+
+        //    return View(product);
+        //}
+
+        public IActionResult Create(byte type)
         {
-            if (id == null)
+            var newProduct = new ProductViewModel
             {
-                return NotFound();
-            }
-
-            var product = await _interfaceProductApp.GetEntityById((int)id);
-            if (product == null)
-            {
-                return NotFound();
-            }
-
-            return View(product);
-        }
-
-        public IActionResult Create()
-        {
-            return View();
+                Type = type
+            };
+            return View(newProduct);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Type,Category,ID,Description")] Product product)
+        public async Task<IActionResult> Create(ProductViewModel model)
         {
             if (ModelState.IsValid)
             {
-                await _interfaceProductApp.Add(product);
-                return RedirectToAction(nameof(Index));
-            }
-            return View(product);
-        }
-
-        public async Task<IActionResult> Edit(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var product = await _interfaceProductApp.GetEntityById((int)id);
-            if (product == null)
-            {
-                return NotFound();
-            }
-            return View(product);
-        }
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Type,Category,ID,Description")] Product product)
-        {
-            if (id != product.ID)
-            {
-                return NotFound();
-            }
-
-            if (ModelState.IsValid)
-            {
-                try
+                var newProduct = new Product
                 {
-                    await _interfaceProductApp.Update(product);
-                }
-                catch
+                    Description = model.Description,
+                    Type = model.Type,
+                    Category = model.Category
+                };
+
+                await _iProductApp.Add(newProduct);
+
+                var newStockProducts = new StockProducts
                 {
-                    throw;
-                }
-                return RedirectToAction(nameof(Index));
+                    ProductID = newProduct.ID
+                };
+
+                await _iStockProductApp.Add(newStockProducts);
+
+                return RedirectToAction(nameof(Index), routeValues: (stockID: 1, type: model.Type));
             }
-            return View(product);
+            return View(model);
         }
 
-        public async Task<IActionResult> Delete(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
+        //public async Task<IActionResult> Edit(int? id)
+        //{
+        //    if (id == null)
+        //    {
+        //        return NotFound();
+        //    }
 
-            var product = await _interfaceProductApp.GetEntityById((int)id);
-            if (product == null)
-            {
-                return NotFound();
-            }
+        //    var product = await _interfaceProductApp.GetEntityById((int)id);
+        //    if (product == null)
+        //    {
+        //        return NotFound();
+        //    }
+        //    return View(product);
+        //}
 
-            return View(product);
-        }
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public async Task<IActionResult> Edit(int id, [Bind("Type,Category,ID,Description")] Product product)
+        //{
+        //    if (id != product.ID)
+        //    {
+        //        return NotFound();
+        //    }
 
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
-        {
-            var product = await _interfaceProductApp.GetEntityById((int)id);
-            await _interfaceProductApp.Delete(product);
-            return RedirectToAction(nameof(Index));
-        }
+        //    if (ModelState.IsValid)
+        //    {
+        //        try
+        //        {
+        //            await _interfaceProductApp.Update(product);
+        //        }
+        //        catch
+        //        {
+        //            throw;
+        //        }
+        //        return RedirectToAction(nameof(Index));
+        //    }
+        //    return View(product);
+        //}
+
+        //public async Task<IActionResult> Delete(int? id)
+        //{
+        //    if (id == null)
+        //    {
+        //        return NotFound();
+        //    }
+
+        //    var product = await _interfaceProductApp.GetEntityById((int)id);
+        //    if (product == null)
+        //    {
+        //        return NotFound();
+        //    }
+
+        //    return View(product);
+        //}
+
+        //[HttpPost, ActionName("Delete")]
+        //[ValidateAntiForgeryToken]
+        //public async Task<IActionResult> DeleteConfirmed(int id)
+        //{
+        //    var product = await _interfaceProductApp.GetEntityById((int)id);
+        //    await _interfaceProductApp.Delete(product);
+        //    return RedirectToAction(nameof(Index));
+        //}
     }
 }

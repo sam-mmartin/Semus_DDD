@@ -6,5 +6,6 @@ namespace Infrastructure.Repository.Repositories
 {
     public class RepositoryStock : RepositoryGeneric<Stock>, IStock
     {
+
     }
 }
