@@ -8,11 +8,11 @@
 <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-md-4">
     <!-- Header -->
     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-        <h1 class="h2" id="EstoqueID">@ViewBag.Estoque - @ViewBag.Descricao</h1>
+        <h1 class="h2" id="EstoqueID">@ViewBag.Stock.ID - @ViewBag.Stock.Description</h1>
         <div class="btn-toolbar mb-2 mb-md-0">
             <div class="btn-group mr-2">
-                <a href="~/EstoqueSemus/Details?id=@ViewBag.Estoque" class="btn btn-sm btn-outline-secondary">&laquo; Voltar</a>
-                @if (ViewBag.Estoque == 1)
+                <a asp-controller="Stock" asp-action="Details" asp-route-id="@ViewBag.Stock.ID" class="btn btn-sm btn-outline-secondary">&laquo; Voltar</a>
+                @if (ViewBag.Stock.ID == 1)
                 {
                     @Html.ActionLink("Cadastrar Produto", "Create", "Produto", new { TipoProduto = ViewBag.TipoProduto }, new { @class = "btn btn-sm btn-outline-secondary" })
                 }
@@ -45,15 +45,15 @@
                         <tr>
                             <th scope="col">#</th>
                             <th scope="col">
-                                @Html.ActionLink("Descrição", "Index", new { estoqueID = ViewBag.Estoque, TipoProduto = ViewBag.TipoProduto, sortOrder = ViewBag.DescricaoSortParm, currentFilter = ViewBag.CurrentFilter })
+                                @Html.ActionLink("Descrição", "Index", new { estoqueID = ViewBag.Stock.ID, TipoProduto = ViewBag.TipoProduto, sortOrder = ViewBag.DescricaoSortParm, currentFilter = ViewBag.CurrentFilter })
                                 @*<i class="fas fa-angle-double-@desc_down_up text-primary"></i>*@
                             </th>
                             <th scope="col">
-                                @Html.ActionLink("Categoria", "Index", new { estoqueID = ViewBag.Estoque, TipoProduto = ViewBag.TipoProduto, sortOrder = ViewBag.CategoriaSortParm, currentFilter = ViewBag.CurrentFilter })
+                                @Html.ActionLink("Categoria", "Index", new { estoqueID = ViewBag.Stock.ID, TipoProduto = ViewBag.TipoProduto, sortOrder = ViewBag.CategoriaSortParm, currentFilter = ViewBag.CurrentFilter })
                                 @*<i class="fas fa-angle-double-@categ_down_up text-primary"></i>*@
                             </th>
                             <th scope="col"><i class="fas fa-info-circle"></i></th>
-                            @if (ViewBag.Estoque == 1)
+                            @if (ViewBag.Stock.ID == 1)
                             {
                                 <th scope="col"><i class="fas fa-trash"></i></th>
                             }
@@ -98,7 +98,7 @@
                 <br />
                 @*Página @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) de @Model.PageCount
 
-                    @Html.PagedListPager(Model, page => Url.Action("Index", new { page, estoqueID = ViewBag.Estoque, TipoProduto = ViewBag.TipoProduto, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))*@
+                    @Html.PagedListPager(Model, page => Url.Action("Index", new { page, estoqueID = ViewBag.Stock.ID, TipoProduto = ViewBag.TipoProduto, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))*@
             </div>
         </div>
     </div>

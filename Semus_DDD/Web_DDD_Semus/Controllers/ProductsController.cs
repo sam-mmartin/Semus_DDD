@@ -25,6 +25,12 @@ namespace Web_DDD_Semus.Controllers
         public async Task<IActionResult> Index(int stockID, byte type)
         {
             var productList = await _iStockProductApp.ListByStock(stockID, type);
+
+            ViewBag.Stock = new StockDataModel()
+            {
+                ID = stockID,
+                Description = productList.FirstOrDefault().Stock.Description
+            };
             return View(productList);
         }
 
