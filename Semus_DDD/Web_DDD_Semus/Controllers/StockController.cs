@@ -45,7 +45,7 @@ namespace Web_DDD_Semus.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(StockViewModel model)
+        public async Task<IActionResult> Create(CreateStockViewModel model)
         {
             if (ModelState.IsValid)
             {
@@ -71,17 +71,32 @@ namespace Web_DDD_Semus.Controllers
             {
                 return NotFound();
             }
-            return View(stock);
+            else
+            {
+                var updateStock = new UpdateStockViewModel
+                {
+                    ID = stock.ID,
+                    Description = stock.Description
+                };
+                return View(updateStock);
+            }
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit([Bind("Description")] Stock stock)
+        public async Task<IActionResult> Edit(UpdateStockViewModel model)
         {
             if (ModelState.IsValid)
             {
                 try
                 {
+                    var stock = await _stockApp.GetEntityById(model.ID);
+                    if (stock == null)
+                    {
+                        return NotFound();
+                    }
+
+                    stock.Description = model.Description;
                     await _stockApp.UpdateStock(stock);
                 }
                 catch
@@ -90,7 +105,7 @@ namespace Web_DDD_Semus.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(stock);
+            return View(model);
         }
 
         public async Task<IActionResult> Delete(int? id)
