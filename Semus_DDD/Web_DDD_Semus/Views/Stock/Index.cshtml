@@ -30,15 +30,18 @@
 
                         @if (item.ID == 1)
                         {
-                            <div class="mb-1 text-muted">Pedidos de Compra: @*@item.PedidoCompras.Where(p => p.Faturado == false).Count()*@</div>
+                            <div class="mb-1 text-muted">
+                                Pedidos de Compra: @*@item.PedidoCompras.Where(p => p.Faturado == false).Count()*@
+                            </div>
                         }
                         else
                         {
-                            <div class="mb-1 text-muted">Pedidos: @*@item.PedidoEstoques.Where(p => p.Faturado == false).Count()*@</div>
+                            <div class="mb-1 text-muted">
+                                Pedidos: @*@item.PedidoEstoques.Where(p => p.Faturado == false).Count()*@
+                            </div>
                         }
 
                         <p class="card-text mb-auto">Acesse para informações detalhadas.</p>
-
                         <a class="btn btn-sm btn-outline-primary btnEstoque" asp-action="Details" asp-route-id="@item.ID">Acessar</a>
                     </div>
 

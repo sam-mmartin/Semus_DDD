@@ -26,7 +26,7 @@
                 </a>
             </li>
 
-            @if (ViewBag.Estoque != null)
+            @if (ViewBag.Stock != null)
             {
                 <!-- Pedidos -->
                 <li class="nav-item">
@@ -48,7 +48,7 @@
                     </div>
                 </li>
 
-                if (ViewBag.Estoque != 1)
+                if (ViewBag.Stock.ID != 1)
                 {
                     <!-- Novo Pedido -->
                     <li class="nav-item">
@@ -71,7 +71,7 @@
                     </li>
                 }
 
-                if (ViewBag.Estoque == 1)
+                if (ViewBag.Stock.ID == 1)
                 {
                     <!-- Compras -->
                     <li class="nav-item">

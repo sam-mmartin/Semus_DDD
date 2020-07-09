@@ -9,6 +9,7 @@ using Infrastructure.Repository.Generics;
 using Infrastructure.Repository.Repositories;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Diagnostics;
 using Microsoft.Extensions.Configuration;
@@ -47,6 +48,14 @@ namespace Web_DDD_Semus
                 .UseLazyLoadingProxies()
                 .ConfigureWarnings(warnings => warnings.Ignore(CoreEventId.DetachedLazyLoadingWarning))
                 .UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+
+            _ = services.AddDbContext<ApplicationDbContext>(
+                options => options
+                .UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+            _ = services.AddDefaultIdentity<IdentityUser>(
+                options => options
+                .SignIn.RequireConfirmedAccount = true)
+                .AddEntityFrameworkStores<ApplicationDbContext>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -55,6 +64,7 @@ namespace Web_DDD_Semus
             if (env.IsDevelopment())
             {
                 _ = app.UseDeveloperExceptionPage();
+                _ = app.UseDatabaseErrorPage();
             }
             else
             {
@@ -66,12 +76,15 @@ namespace Web_DDD_Semus
             _ = app.UseHttpsRedirection();
             _ = app.UseStaticFiles();
             _ = app.UseRouting();
+            _ = app.UseAuthentication();
             _ = app.UseAuthorization();
 
             _ = app.UseEndpoints(endpoints =>
               {
-                  _ = endpoints.MapControllerRoute(name: "default",
-                                                   pattern: "{controller=Home}/{action=Index}/{id?}");
+                  _ = endpoints.MapControllerRoute(
+                      name: "default",
+                      pattern: "{controller=Home}/{action=Index}/{id?}");
+                  _ = endpoints.MapRazorPages();
               });
         }
     }

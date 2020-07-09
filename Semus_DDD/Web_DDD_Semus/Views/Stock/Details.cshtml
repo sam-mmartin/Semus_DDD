@@ -37,7 +37,9 @@
                     <h5 class="card-title">
                         Todos Produtos:
                         @if (Model.StockProducts != null)
-                        {@Model.StockProducts.Where(e => e.Product.Type == 1).Count()}
+                        {
+                            @Model.StockProducts.Where(e => e.Product.Type == 1).Count()
+                        }
                         <br />
                         Pedidos:
                         @if (ViewBag.Pedidos != null)
@@ -60,8 +62,12 @@
                 </div>
                 <div class="card-body">
                     <h5 class="card-title">
-                        Todos Produtos: @if (Model.StockProducts != null)
-                        {@Model.StockProducts.Where(e => e.Product.Type == 2).Count()}<br />
+                        Todos Produtos:
+                        @if (Model.StockProducts != null)
+                        {
+                            @Model.StockProducts.Where(e => e.Product.Type == 2).Count()
+                        }
+                        <br />
                         Pedidos: @*@Model.PedidoEstoques.Where(p => p.TipoPedido == 2 && p.Faturado == false).Count()*@
                     </h5>
                     <p class="card-text"></p>

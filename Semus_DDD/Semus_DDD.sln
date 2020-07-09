@@ -19,9 +19,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Domain", "Domain\Domain.csp
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Infrastructure", "Infrastructure\Infrastructure.csproj", "{E13BA6FC-9005-4B75-A8D1-157882C8C569}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApplicationApp", "ApplicationApp\ApplicationApp.csproj", "{00CAA91B-CC70-4200-AC03-0FCB3F1C9392}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ApplicationApp", "ApplicationApp\ApplicationApp.csproj", "{00CAA91B-CC70-4200-AC03-0FCB3F1C9392}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Web_DDD_Semus", "Web_DDD_Semus\Web_DDD_Semus.csproj", "{5ADE3B8D-BB04-4257-B115-E32E2EA37C16}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Web_DDD_Semus", "Web_DDD_Semus\Web_DDD_Semus.csproj", "{5ADE3B8D-BB04-4257-B115-E32E2EA37C16}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -2,7 +2,6 @@
 using Microsoft.AspNetCore.Mvc;
 using Entities.Entity;
 using ApplicationApp.Interfaces;
-using System.Linq;
 using Web_DDD_Semus.ViewModels;
 
 namespace Web_DDD_Semus.Controllers
@@ -76,7 +75,8 @@ namespace Web_DDD_Semus.Controllers
 
                 await _iStockProductApp.Add(newStockProducts);
 
-                return RedirectToAction(nameof(Index), routeValues: (stockID: 1, type: model.Type));
+                return RedirectToAction(nameof(Index),
+                                        routeValues: new { stockID = 1, type = model.Type });
             }
             return View(model);
         }

@@ -4,9 +4,9 @@
     ViewData["Title"] = "Edit";
 }
 
-<h1>Edit</h1>
+<h1>Editar</h1>
 
-<h4>UpdateStockViewModel</h4>
+<h4>Estoque</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -23,7 +23,7 @@
                 <span asp-validation-for="Description" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <a class="btn btn-secondary" asp-action="Index" asp-route-id="@Model.ID">Voltar</a>
+                <a class="btn btn-secondary" asp-action="Details" asp-route-id="@Model.ID">Voltar</a>
                 <input type="submit" value="Salvar" class="btn btn-primary" />
             </div>
         </form>

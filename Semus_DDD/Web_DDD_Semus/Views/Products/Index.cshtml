@@ -46,13 +46,13 @@
                             <th scope="col">#</th>
                             <th scope="col">
                                 <a asp-action="Index" asp-route-stockID="@ViewBag.Stock.ID" asp-route-type="@ViewBag.Type">Descrição</a>
-                                @*@Html.ActionLink("Descrição", "Index", new { estoqueID = ViewBag.Stock.ID, TipoProduto = ViewBag.TipoProduto, sortOrder = ViewBag.DescricaoSortParm, currentFilter = ViewBag.CurrentFilter })*@
                                 @*<i class="fas fa-angle-double-@desc_down_up text-primary"></i>*@
+                                @*@Html.ActionLink("Descrição", "Index", new { estoqueID = ViewBag.Stock.ID, TipoProduto = ViewBag.TipoProduto, sortOrder = ViewBag.DescricaoSortParm, currentFilter = ViewBag.CurrentFilter })*@
                             </th>
                             <th scope="col">
                                 <a asp-action="Index" asp-route-stockID="@ViewBag.Stock.ID" asp-route-type="@ViewBag.Type">Categoria</a>
-                                @*@Html.ActionLink("Categoria", "Index", new { estoqueID = ViewBag.Stock.ID, TipoProduto = ViewBag.TipoProduto, sortOrder = ViewBag.CategoriaSortParm, currentFilter = ViewBag.CurrentFilter })*@
                                 @*<i class="fas fa-angle-double-@categ_down_up text-primary"></i>*@
+                                @*@Html.ActionLink("Categoria", "Index", new { estoqueID = ViewBag.Stock.ID, TipoProduto = ViewBag.TipoProduto, sortOrder = ViewBag.CategoriaSortParm, currentFilter = ViewBag.CurrentFilter })*@
                             </th>
                             <th scope="col"><i class="fas fa-info-circle"></i></th>
                             @if (ViewBag.Stock.ID == 1)
@@ -93,7 +93,6 @@
                                 {
                                     <td>
                                         <a asp-action="Delete" asp-route-id="@item.ProductID" class="btn btn-danger">Apagar</a>
-                                        @*@Html.ActionLink("Apagar", "Delete", new { id = item.ProductID }, new { @class = "btn btn-danger" })*@
                                     </td>
                                 }
                             </tr>
