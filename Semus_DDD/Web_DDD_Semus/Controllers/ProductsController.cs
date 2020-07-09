@@ -24,33 +24,26 @@ namespace Web_DDD_Semus.Controllers
 
         public async Task<IActionResult> Index(int stockID, byte type)
         {
+            var stock = await _iStockApp.GetEntityById(stockID);
             var productList = await _iStockProductApp.ListByStock(stockID, type);
 
             ViewBag.Stock = new StockDataModel()
             {
-                ID = stockID,
-                Description = productList.FirstOrDefault().Stock.Description
+                ID = stock.ID,
+                Description = stock.Description
             };
 
             ViewBag.Type = type;
             return View(productList);
         }
 
-        //public async Task<IActionResult> Details(int? id)
-        //{
-        //    if (id == null)
-        //    {
-        //        return NotFound();
-        //    }
+        public async Task<ActionResult> Details(byte type, string searchString)
+        {
+            var productList = await _iProductApp.ListByType(type);
 
-        //    var product = await _interfaceProductApp.GetEntityById((int)id);
-        //    if (product == null)
-        //    {
-        //        return NotFound();
-        //    }
-
-        //    return View(product);
-        //}
+            ViewBag.Type = type;
+            return View(productList);
+        }
 
         public IActionResult Create(byte type)
         {

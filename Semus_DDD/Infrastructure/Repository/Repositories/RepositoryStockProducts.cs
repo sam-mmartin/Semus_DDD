@@ -24,7 +24,17 @@ namespace Infrastructure.Repository.Repositories
             return await data.Set<StockProducts>()
                 .Where(s => s.StockID == stockID && s.Product.Type == type)
                 .Include(p => p.Product)
-                .Include(s => s.Stock)
+                .AsNoTracking()
+                .ToListAsync();
+        }
+
+        public async Task<List<StockProducts>> ListByType(byte type)
+        {
+            using ContextBase data = new ContextBase(_OptionBuilder);
+            return await data.Set<StockProducts>()
+                .Where(s => s.Product.Type == type)
+                .Include(p => p.Product)
+                .AsNoTracking()
                 .ToListAsync();
         }
     }

@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Infrastructure.Migrations
 {
     [DbContext(typeof(ContextBase))]
-    [Migration("20200708020559_InitialCreate")]
+    [Migration("20200709134612_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -105,7 +105,7 @@ namespace Infrastructure.Migrations
             modelBuilder.Entity("Entities.Entity.StockProducts", b =>
                 {
                     b.HasOne("Entities.Entity.Product", "Product")
-                        .WithMany()
+                        .WithMany("StockProducts")
                         .HasForeignKey("ProductID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();

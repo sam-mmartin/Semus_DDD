@@ -10,21 +10,27 @@
     <link rel="stylesheet" href="~/lib/FontAwesome/css/all.css" />
 </head>
 <body>
+    <!-- NavBar Header -->
     <partial name="_NavBarPartial.cshtml" />
 
     <div class="container-fluid">
         <div class="row">
+            <!-- Sidebar -->
             <partial name="_SideBarPartial.cshtml" />
 
+            <!-- Section Main -->
             @RenderBody()
         </div>
     </div>
 
     <br />
 
+    <!-- Modal Faturar Pedido -->
     <partial name="_ModalFaturarPedidoPartial.cshtml" />
+    <!-- Modal Unir Compras -->
     <partial name="_ModalComprasPartial.cshtml" />
 
+    <!-- Scripts -->
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script>window.jQuery || document.write('<script src="~/Script/jquery-3.5.1.slim.js"><\/script>')</script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>

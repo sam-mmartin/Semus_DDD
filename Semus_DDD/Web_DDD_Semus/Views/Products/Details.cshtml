@@ -1,36 +1,56 @@
-﻿@model Entities.Entity.Product
+﻿@model IEnumerable<Entities.Entity.Product>
 
 @{
     ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/Stock/_LayoutStock.cshtml";
 }
 
-<h1>Details</h1>
+<main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-md-4">
+    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+        <h1 class="h2">Distribuição</h1>
+        <div class="btn-toolbar mb-2 mb-md-0">
 
-<div>
-    <h4>Product</h4>
-    <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Type)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Type)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Category)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Category)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Description)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Description)
-        </dd>
-    </dl>
-</div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model.ID">Edit</a> |
-    <a asp-action="Index">Back to List</a>
-</div>
+            <button type="button" class="btn btn-sm btn-outline-secondary dropdown-toggle">
+                <span data-feather="calendar"></span> This week
+            </button>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="card-deck mb-3 text-center">
+            <div class="row">
+                @foreach (var item in Model)
+                {
+                    int quantity = 0;
+                    foreach (var element in item.StockProducts)
+                    {
+                        quantity += element.QuantityTotal;
+                    }
+
+                    <div class="col-md-4">
+                        <div class="card mb-4 shadow-sm">
+                            <div class="card-header">
+                                <h6 class="my-0 font-weight-normal">@item.Description</h6>
+                            </div>
+
+                            <div class="card-body">
+                                <h4 class="card-title pricing-card-title">
+                                    <small class="text-muted">Quantidade Total /</small> @quantity
+                                </h4>
+
+                                <ul class="list-unstyled mt-3 mb-4">
+                                    <li><strong>Estoque : Quantidade</strong></li>
+                                    @foreach (var element in item.StockProducts)
+                                    {
+                                        <li>@element.Stock.Description : @element.QuantityTotal</li>
+                                    }
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</main>
+

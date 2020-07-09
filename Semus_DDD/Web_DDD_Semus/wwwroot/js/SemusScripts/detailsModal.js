@@ -3,7 +3,7 @@
     $('.detailsPro').click(function () {
         ProdutoID = $(this).attr('name').split('-');
         var stockID = $('#EstoqueID').html().split('-');
-        var href = "/Product/Edit?id=" + ProdutoID[0] + "&stockID=" + stockID[0];
+        var href = "/Products/Edit?id=" + ProdutoID[0] + "&stockID=" + stockID[0];
         $('#editarPro').attr('href', href);
         $('#Total').html(ProdutoID[1]);
         $('#Entrada').html(ProdutoID[2]);

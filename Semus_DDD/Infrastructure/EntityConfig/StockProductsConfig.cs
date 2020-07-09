@@ -18,7 +18,7 @@ namespace Infrastructure.EntityConfig
 
             _ = builder
                 .HasOne(s => s.Product)
-                .WithMany()
+                .WithMany(c => c.StockProducts)
                 .HasForeignKey(k => k.ProductID);
 
             _ = builder.Property(p => p.DateInput).IsRequired();

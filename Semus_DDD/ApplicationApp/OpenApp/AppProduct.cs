@@ -41,5 +41,12 @@ namespace ApplicationApp.OpenApp
             await _IProduct.Update(Object);
         }
         #endregion
+
+        #region Custom Methods
+        public async Task<List<Product>> ListByType(byte type)
+        {
+            return await _IProduct.ListByType(type);
+        }
+        #endregion
     }
 }

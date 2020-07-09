@@ -6,9 +6,19 @@
 
     @if (ViewBag.Type != null)
     {
-        using (Html.BeginForm(null, null, new { stockID = ViewBag.Stock.ID, type = ViewBag.Type }, FormMethod.Post, null, new { @class = "w-100" }))
+        if (ViewBag.Stock != null)
         {
-            @Html.TextBox("SearchString", ViewBag.CurrentFilter as string, new { @class = "form-control form-control-dark w-100", placeholder = "Pesquisar" })
+            using (Html.BeginForm(null, null, new { stockID = ViewBag.Stock.ID, type = ViewBag.Type }, FormMethod.Post, null, new { @class = "w-100" }))
+            {
+                @Html.TextBox("SearchString", ViewBag.CurrentFilter as string, new { @class = "form-control form-control-dark w-100", placeholder = "Pesquisar" })
+            }
+        }
+        else
+        {
+            using (Html.BeginForm(null, null, new { type = ViewBag.Type }, FormMethod.Post, null, new { @class = "w-100" }))
+            {
+                @Html.TextBox("SearchString", ViewBag.CurrentFilter as string, new { @class = "form-control form-control-dark w-100", placeholder = "Pesquisar" })
+            }
         }
     }
     else

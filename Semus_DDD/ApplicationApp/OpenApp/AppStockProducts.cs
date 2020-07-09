@@ -55,6 +55,11 @@ namespace ApplicationApp.OpenApp
         {
             return await _IStockProducts.ListByStock(stockID, type);
         }
+
+        public async Task<List<StockProducts>> ListByType(byte type)
+        {
+            return await _IStockProducts.ListByType(type);
+        }
         #endregion
     }
 }

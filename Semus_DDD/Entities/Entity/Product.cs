@@ -9,5 +9,7 @@ namespace Entities.Entity
         public byte Type { get; set; }
         [Display(Name = "Categoria do Produto")]
         public string Category { get; set; }
+
+        public virtual ICollection<StockProducts> StockProducts { get; set; }
     }
 }

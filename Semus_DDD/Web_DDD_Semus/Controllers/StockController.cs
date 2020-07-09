@@ -35,7 +35,7 @@ namespace Web_DDD_Semus.Controllers
                 return NotFound();
             }
 
-            ViewBag.Estoque = id;
+            ViewBag.Stock = id;
             return View(stock);
         }
 

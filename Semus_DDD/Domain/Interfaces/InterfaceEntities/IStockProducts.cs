@@ -8,5 +8,6 @@ namespace Domain.Interfaces.InterfaceEntities
     public interface IStockProducts : IGeneric<StockProducts>
     {
         Task<List<StockProducts>> ListByStock(int stockID, byte type);
+        Task<List<StockProducts>> ListByType(byte type);
     }
 }

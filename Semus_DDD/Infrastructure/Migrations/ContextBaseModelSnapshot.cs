@@ -103,7 +103,7 @@ namespace Infrastructure.Migrations
             modelBuilder.Entity("Entities.Entity.StockProducts", b =>
                 {
                     b.HasOne("Entities.Entity.Product", "Product")
-                        .WithMany()
+                        .WithMany("StockProducts")
                         .HasForeignKey("ProductID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();

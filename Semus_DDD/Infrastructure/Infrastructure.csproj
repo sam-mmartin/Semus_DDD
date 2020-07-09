@@ -5,6 +5,23 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Migrations\20200709124017_updatemodelproduct.cs" />
+    <Compile Remove="Migrations\20200709124017_updatemodelproduct.Designer.cs" />
+    <Compile Remove="Migrations\20200709124519_updatemodelproduct.cs" />
+    <Compile Remove="Migrations\20200709124519_updatemodelproduct.Designer.cs" />
+    <Compile Remove="Migrations\20200709124750_InitialCreate.cs" />
+    <Compile Remove="Migrations\20200709124750_InitialCreate.Designer.cs" />
+    <Compile Remove="Migrations\20200709130908_InitialCreate.cs" />
+    <Compile Remove="Migrations\20200709130908_InitialCreate.Designer.cs" />
+    <Compile Remove="Migrations\20200709131645_InitialCreate.cs" />
+    <Compile Remove="Migrations\20200709131645_InitialCreate.Designer.cs" />
+    <Compile Remove="Migrations\20200709133859_InitialCreate.cs" />
+    <Compile Remove="Migrations\20200709133859_InitialCreate.Designer.cs" />
+    <Compile Remove="Migrations\20200709134355_InitialCreate.cs" />
+    <Compile Remove="Migrations\20200709134355_InitialCreate.Designer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.5" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="3.1.5">
       <PrivateAssets>all</PrivateAssets>
@@ -19,10 +36,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Domain\Domain.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Migrations\" />
   </ItemGroup>
 
 </Project>
