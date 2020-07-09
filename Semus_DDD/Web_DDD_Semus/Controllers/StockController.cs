@@ -29,13 +29,17 @@ namespace Web_DDD_Semus.Controllers
                 return NotFound();
             }
 
-            var stock = await _stockApp.GetEntityById((int)id);
+            var stock = await _stockApp.GetById((int)id);
             if (stock == null)
             {
                 return NotFound();
             }
 
-            ViewBag.Stock = id;
+            ViewBag.Stock = new StockDataModel()
+            {
+                ID = stock.ID,
+                Description = stock.Description
+            };
             return View(stock);
         }
 

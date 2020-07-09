@@ -55,6 +55,11 @@ namespace ApplicationApp.OpenApp
         {
             await _IServiceStock.UpdateStock(stock);
         }
+
+        public async Task<Stock> GetById(int id)
+        {
+            return await _IStock.GetById(id);
+        }
         #endregion
     }
 }

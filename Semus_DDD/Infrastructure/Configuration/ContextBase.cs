@@ -1,6 +1,7 @@
 ﻿using Entities.Entity;
 using Infrastructure.EntityConfig;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Diagnostics;
 
 namespace Infrastructure.Configuration
 {
@@ -26,7 +27,10 @@ namespace Infrastructure.Configuration
         {
             if (!optionsBuilder.IsConfigured)
             {
-                optionsBuilder.UseSqlServer(GetConnectionString());
+                _ = optionsBuilder
+                    .UseLazyLoadingProxies()
+                    .ConfigureWarnings(warnings => warnings.Ignore(CoreEventId.DetachedLazyLoadingWarning))
+                    .UseSqlServer(GetConnectionString());
             }
 
             base.OnConfiguring(optionsBuilder);

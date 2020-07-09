@@ -8,5 +8,6 @@ namespace ApplicationApp.Interfaces
     {
         Task AddStock(Stock stock);
         Task UpdateStock(Stock stock);
+        Task<Stock> GetById(int id);
     }
 }

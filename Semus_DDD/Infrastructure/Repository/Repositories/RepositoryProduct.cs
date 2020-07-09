@@ -23,8 +23,6 @@ namespace Infrastructure.Repository.Repositories
             using ContextBase data = new ContextBase(_OptionBuilder);
             return await data.Set<Product>()
                 .Where(p => p.Type == type)
-                .Include(p => p.StockProducts)
-                .AsNoTracking()
                 .ToListAsync();
         }
     }

@@ -42,7 +42,7 @@ namespace Infrastructure.Repository.Generics
         public async Task<List<T>> List()
         {
             using ContextBase data = new ContextBase(_OptionBuilder);
-            return await data.Set<T>().AsNoTracking().ToListAsync();
+            return await data.Set<T>().ToListAsync();
         }
 
         public async Task Update(T Object)
@@ -55,7 +55,7 @@ namespace Infrastructure.Repository.Generics
 
         #region Disposed
         bool disposed = false;
-        SafeHandle handle = new SafeFileHandle(IntPtr.Zero, true);
+        private readonly SafeHandle handle = new SafeFileHandle(IntPtr.Zero, true);
 
         // Public implementation of Dispose pattern callable by consumers.
         public void Dispose()

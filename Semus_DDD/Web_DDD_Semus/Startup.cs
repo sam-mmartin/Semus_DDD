@@ -10,6 +10,7 @@ using Infrastructure.Repository.Repositories;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Diagnostics;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -41,7 +42,11 @@ namespace Web_DDD_Semus
             _ = services.AddSingleton<IServiceStock, ServiceStock>();
 
             _ = services.AddControllersWithViews();
-            _ = services.AddDbContext<ContextBase>(option => option.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+            _ = services.AddDbContext<ContextBase>(
+                option => option
+                .UseLazyLoadingProxies()
+                .ConfigureWarnings(warnings => warnings.Ignore(CoreEventId.DetachedLazyLoadingWarning))
+                .UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
