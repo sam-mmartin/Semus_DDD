@@ -2,14 +2,15 @@
     var ProdutoID;
     $('.detailsPro').click(function () {
         ProdutoID = $(this).attr('name').split('-');
-        var href = "/Produto/Edit?id=" + ProdutoID[0] + "&estoqueID=" + $('#EstoqueID').html();
+        var stockID = $('#EstoqueID').html().split('-');
+        var href = "/Product/Edit?id=" + ProdutoID[0] + "&stockID=" + stockID[0];
         $('#editarPro').attr('href', href);
         $('#Total').html(ProdutoID[1]);
         $('#Entrada').html(ProdutoID[2]);
         $('#dataEntrada').html(ProdutoID[3]);
         $('#Saida').html(ProdutoID[4]);
         $('#dataSaida').html(ProdutoID[5]);
-        $('#user').html(ProdutoID[6]);
+        //$('#user').html(ProdutoID[6]);
     });
 });
 

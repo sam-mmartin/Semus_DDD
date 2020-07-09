@@ -1,0 +1,66 @@
+﻿<!-- Modal Detalhes -->
+<div class="modal fade" id="ModalCenter" tabindex="-1" role="dialog" aria-labelledby="ModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="ModalCenterTitle">Detalhes</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="list-group">
+
+                    <a href="#" class="list-group-item list-group-item-action flex-column align-items-start active">
+                        <div class="d-flex w-100 justify-content-between">
+                            <h6 class="mb-1">Quantidade em estoque</h6>
+                        </div>
+                        <p class="mb-1" id="Total"></p>
+                    </a>
+
+                    <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
+                        <div class="d-flex w-100 justify-content-between">
+                            <h6 class="mb-1">Última Entrada</h6>
+                        </div>
+                        <p class="mb-1" id="Entrada"></p>
+                    </a>
+
+                    <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
+                        <div class="d-flex w-100 justify-content-between">
+                            <h6 class="mb-1">Última Saída</h6>
+                        </div>
+                        <p class="mb-1" id="Saida"></p>
+                    </a>
+
+                    <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
+                        <div class="d-flex w-100 justify-content-between">
+                            <h6 class="mb-1">Data da última entrada</h6>
+                        </div>
+                        <p class="mb-1" id="dataEntrada"></p>
+                    </a>
+
+                    <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
+                        <div class="d-flex w-100 justify-content-between">
+                            <h6 class="mb-1">Data da última saída</h6>
+                        </div>
+                        <p class="mb-1" id="dataSaida"></p>
+                    </a>
+
+                    <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
+                        <div class="d-flex w-100 justify-content-between">
+                            <h6 class="mb-1">Usuário</h6>
+                        </div>
+                        <p class="mb-1" id="user"></p>
+                    </a>
+                </div>
+            </div>
+            <div class="modal-footer">
+                @if (ViewBag.Stock.ID == 1)
+                {
+                    <a class="btn btn-warning" id="editarPro" role="button">Atualizar Estoque</a>
+                }
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+            </div>
+        </div>
+    </div>
+</div>

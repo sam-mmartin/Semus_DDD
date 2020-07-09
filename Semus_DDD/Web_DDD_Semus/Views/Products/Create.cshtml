@@ -27,7 +27,7 @@
                 <span asp-validation-for="Category" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <a class="btn btn-secondary" asp-action="Index" asp-route-stockID="1">Voltar</a>
+                <a class="btn btn-secondary" asp-action="Index" asp-route-stockID="1" asp-route-type="@Model.Type">Voltar</a>
                 <input type="submit" value="Salvar" class="btn btn-primary" />
             </div>
         </form>

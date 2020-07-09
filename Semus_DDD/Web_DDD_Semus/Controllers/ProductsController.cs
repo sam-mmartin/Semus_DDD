@@ -31,6 +31,8 @@ namespace Web_DDD_Semus.Controllers
                 ID = stockID,
                 Description = productList.FirstOrDefault().Stock.Description
             };
+
+            ViewBag.Type = type;
             return View(productList);
         }
 

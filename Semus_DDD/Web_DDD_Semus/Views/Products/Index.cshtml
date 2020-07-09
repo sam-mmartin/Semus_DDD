@@ -14,7 +14,7 @@
                 <a asp-controller="Stock" asp-action="Details" asp-route-id="@ViewBag.Stock.ID" class="btn btn-sm btn-outline-secondary">&laquo; Voltar</a>
                 @if (ViewBag.Stock.ID == 1)
                 {
-                    @Html.ActionLink("Cadastrar Produto", "Create", "Produto", new { TipoProduto = ViewBag.TipoProduto }, new { @class = "btn btn-sm btn-outline-secondary" })
+                    <a asp-action="Create" asp-route-type="@ViewBag.Type" class="btn btn-sm btn-outline-secondary">Cadastrar Produto</a>
                 }
                 <button type="button" class="btn btn-sm btn-outline-secondary" data-toggle="modal" data-target="#ModalItensFalta">
                     Itens em Falta
@@ -27,11 +27,11 @@
         </div>
     </div>
 
-    @if (ViewBag.TipoProduto == 1)
+    @if (ViewBag.Type == 1)
     {
         <h4 class="text-info">Medicamentos</h4>
     }
-    else if (ViewBag.TipoProduto == 2)
+    else if (ViewBag.Type == 2)
     {
         <h4 class="text-danger">Suprimentos</h4>
     }
@@ -45,11 +45,13 @@
                         <tr>
                             <th scope="col">#</th>
                             <th scope="col">
-                                @Html.ActionLink("Descrição", "Index", new { estoqueID = ViewBag.Stock.ID, TipoProduto = ViewBag.TipoProduto, sortOrder = ViewBag.DescricaoSortParm, currentFilter = ViewBag.CurrentFilter })
+                                <a asp-action="Index" asp-route-stockID="@ViewBag.Stock.ID" asp-route-type="@ViewBag.Type">Descrição</a>
+                                @*@Html.ActionLink("Descrição", "Index", new { estoqueID = ViewBag.Stock.ID, TipoProduto = ViewBag.TipoProduto, sortOrder = ViewBag.DescricaoSortParm, currentFilter = ViewBag.CurrentFilter })*@
                                 @*<i class="fas fa-angle-double-@desc_down_up text-primary"></i>*@
                             </th>
                             <th scope="col">
-                                @Html.ActionLink("Categoria", "Index", new { estoqueID = ViewBag.Stock.ID, TipoProduto = ViewBag.TipoProduto, sortOrder = ViewBag.CategoriaSortParm, currentFilter = ViewBag.CurrentFilter })
+                                <a asp-action="Index" asp-route-stockID="@ViewBag.Stock.ID" asp-route-type="@ViewBag.Type">Categoria</a>
+                                @*@Html.ActionLink("Categoria", "Index", new { estoqueID = ViewBag.Stock.ID, TipoProduto = ViewBag.TipoProduto, sortOrder = ViewBag.CategoriaSortParm, currentFilter = ViewBag.CurrentFilter })*@
                                 @*<i class="fas fa-angle-double-@categ_down_up text-primary"></i>*@
                             </th>
                             <th scope="col"><i class="fas fa-info-circle"></i></th>
@@ -62,12 +64,12 @@
                     <tbody>
                         @foreach (var item in Model)
                         {
-                            //string produtoInfo = item.Produto_ID + "-" +
-                            //    item.QuantidadeTotal + "-" +
-                            //    item.QuantidadeEntrada + "-" +
-                            //    item.DataEntrada + "-" +
-                            //    item.QuantidadeSaida + "-" +
-                            //    item.DataSaida;
+                            string productInfo = item.ProductID + "-" +
+                                item.QuantityTotal + "-" +
+                                item.Quant_Input + "-" +
+                                item.DateInput + "-" +
+                                item.Quant_Output + "-" +
+                                item.DateOutput;
 
                             //if (item.UserID == null)
                             //{
@@ -83,13 +85,16 @@
                                 <td>@Html.DisplayFor(modelItem => item.Product.Description)</td>
                                 <td>@Html.DisplayFor(modelItem => item.Product.Category)</td>
                                 <td>
-                                    <button name="@*@produtoInfo*@" type="button" class="btn btn-primary detailsPro" data-toggle="modal" data-target="#ModalCenter">
+                                    <button name="@productInfo" type="button" class="btn btn-primary detailsPro" data-toggle="modal" data-target="#ModalCenter">
                                         Visualizar Detalhes
                                     </button>
                                 </td>
                                 @if (item.StockID == 1)
                                 {
-                                    <td>@Html.ActionLink("Apagar", "Delete", new { id = item.ProductID }, new { @class = "btn btn-danger" })</td>
+                                    <td>
+                                        <a asp-action="Delete" asp-route-id="@item.ProductID" class="btn btn-danger">Apagar</a>
+                                        @*@Html.ActionLink("Apagar", "Delete", new { id = item.ProductID }, new { @class = "btn btn-danger" })*@
+                                    </td>
                                 }
                             </tr>
                         }
@@ -103,3 +108,40 @@
         </div>
     </div>
 </main>
+
+<div class="modal fade" id="ModalItensFalta" tabindex="-1" role="dialog" aria-labelledby="ModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="ModalCenterTitle">Detalhes</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="list-group">
+                    @foreach (var item in Model)
+                    {
+                        if (item.QuantityTotal == 0)
+                        {
+                            <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
+                                <div class="d-flex w-100 justify-content-between">
+                                    <h6 class="mb-1">@item.Product.Description</h6>
+                                </div>
+                            </a>
+                        }
+                    }
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<partial name="Partials/_ModalDetailsProduct.cshtml" />
+
+@section Scripts {
+    <script src="~/js/SemusScripts/detailsModal.js"></script>
+}

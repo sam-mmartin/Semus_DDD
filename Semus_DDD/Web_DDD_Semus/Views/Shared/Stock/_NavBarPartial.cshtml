@@ -4,9 +4,9 @@
         <span class="navbar-toggler-icon"></span>
     </button>
 
-    @if (ViewBag.TipoProduto != null)
+    @if (ViewBag.Type != null)
     {
-        using (Html.BeginForm(null, null, new { estoqueID = ViewBag.Estoque, TipoProduto = ViewBag.TipoProduto }, FormMethod.Post, null, new { @class = "w-100" }))
+        using (Html.BeginForm(null, null, new { stockID = ViewBag.Stock.ID, type = ViewBag.Type }, FormMethod.Post, null, new { @class = "w-100" }))
         {
             @Html.TextBox("SearchString", ViewBag.CurrentFilter as string, new { @class = "form-control form-control-dark w-100", placeholder = "Pesquisar" })
         }
