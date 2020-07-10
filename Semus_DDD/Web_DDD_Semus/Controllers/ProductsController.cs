@@ -3,9 +3,11 @@ using Microsoft.AspNetCore.Mvc;
 using Entities.Entity;
 using ApplicationApp.Interfaces;
 using Web_DDD_Semus.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Web_DDD_Semus.Controllers
 {
+    [Authorize]
     public class ProductsController : Controller
     {
         #region Var & Constructor

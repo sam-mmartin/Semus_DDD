@@ -5,12 +5,12 @@ using Domain.Interfaces.InterfaceEntities;
 using Domain.Interfaces.InterfaceServices;
 using Domain.Services;
 using Identity.Context;
+using Identity.Models;
 using Infrastructure.Configuration;
 using Infrastructure.Repository.Generics;
 using Infrastructure.Repository.Repositories;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Diagnostics;
 using Microsoft.Extensions.Configuration;
@@ -43,20 +43,27 @@ namespace Web_DDD_Semus
 
             _ = services.AddSingleton<IServiceStock, ServiceStock>();
 
-            _ = services.AddControllersWithViews();
+            #region Service DbContext
             _ = services.AddDbContext<ContextBase>(
                 option => option
                 .UseLazyLoadingProxies()
                 .ConfigureWarnings(warnings => warnings.Ignore(CoreEventId.DetachedLazyLoadingWarning))
                 .UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+            #endregion
 
+            #region Identity DbContext
             _ = services.AddDbContext<ApplicationDbContext>(
                 options => options
                 .UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
-            _ = services.AddDefaultIdentity<IdentityUser>(
+
+            _ = services.AddDefaultIdentity<ApplicationUser>(
                 options => options
                 .SignIn.RequireConfirmedAccount = true)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
+            #endregion
+
+            _ = services.AddControllersWithViews();
+            _ = services.AddRazorPages();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
