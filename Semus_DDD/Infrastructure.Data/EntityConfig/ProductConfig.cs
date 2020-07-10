@@ -8,7 +8,6 @@ namespace Infrastructure.EntityConfig
     {
         public void Configure(EntityTypeBuilder<Product> builder)
         {
-            _ = builder.ToTable("Produto");
             _ = builder.Property(p => p.Description).IsRequired().HasMaxLength(100);
             _ = builder.Property(p => p.Category).IsRequired().HasMaxLength(50);
             _ = builder.Property(p => p.Type).IsRequired();

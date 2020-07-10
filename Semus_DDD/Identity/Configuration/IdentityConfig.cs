@@ -1,4 +1,5 @@
-﻿using Identity.Models;
+﻿using Entities.Entity.Client;
+using Identity.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 

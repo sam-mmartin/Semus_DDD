@@ -8,7 +8,6 @@ namespace Infrastructure.EntityConfig
     {
         public void Configure(EntityTypeBuilder<Stock> builder)
         {
-            _ = builder.ToTable("Estoque");
             _ = builder.Property(p => p.Description).IsRequired().HasMaxLength(100);
             _ = builder.Property(p => p.DateRegister).IsRequired();
         }

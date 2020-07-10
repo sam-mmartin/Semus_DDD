@@ -13,11 +13,11 @@ namespace Infrastructure.Configuration
         {
         }
 
-        public DbSet<Department> Departments { get; set; }
-        public DbSet<Office> Offices { get; set; }
+        public DbSet<Department> Department { get; set; }
+        public DbSet<Office> Office { get; set; }
         public DbSet<Product> Product { get; set; }
         public DbSet<Stock> Stock { get; set; }
-        public DbSet<StockProducts> StockProducts { get; set; }
+        public DbSet<StockProducts> StockProduct { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

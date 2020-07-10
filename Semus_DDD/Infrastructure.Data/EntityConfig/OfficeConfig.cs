@@ -8,7 +8,6 @@ namespace Infrastructure.EntityConfig
     {
         public void Configure(EntityTypeBuilder<Office> builder)
         {
-            _ = builder.ToTable("Funcao");
             _ = builder.Property(p => p.Description).IsRequired().HasMaxLength(50);
         }
     }

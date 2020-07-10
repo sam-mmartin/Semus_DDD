@@ -8,7 +8,6 @@ namespace Infrastructure.EntityConfig
     {
         public void Configure(EntityTypeBuilder<Department> builder)
         {
-            _ = builder.ToTable("Setor");
             _ = builder.Property(p => p.Description).IsRequired().HasMaxLength(50);
         }
     }

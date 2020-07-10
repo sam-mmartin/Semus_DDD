@@ -8,7 +8,6 @@ namespace Infrastructure.EntityConfig
     {
         public void Configure(EntityTypeBuilder<StockProducts> builder)
         {
-            _ = builder.ToTable("EstoqueProdutos");
             _ = builder.HasKey(k => new { k.ProductID, k.StockID });
 
             _ = builder
