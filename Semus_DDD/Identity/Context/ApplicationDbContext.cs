@@ -1,8 +1,9 @@
-﻿using Entities.Entity.Identity;
+﻿using Identity.Configuration;
+using Identity.Models;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
-namespace Infrastructure.Configuration
+namespace Identity.Context
 {
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
@@ -13,6 +14,8 @@ namespace Infrastructure.Configuration
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
+            _ = builder.ApplyConfiguration(new IdentityConfig());
+
             base.OnModelCreating(builder);
         }
     }
